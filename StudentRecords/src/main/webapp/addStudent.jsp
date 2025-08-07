@@ -26,6 +26,6 @@
 
 
 </form>
-<p><a href = "index.jsp">Back to Home</a></p>
+<p><a href = "homepage.jsp">Back to Home</a></p>
 </body>
 </html>
