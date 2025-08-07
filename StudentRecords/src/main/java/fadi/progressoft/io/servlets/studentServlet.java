@@ -1,8 +1,8 @@
 package main.java.fadi.progressoft.io.servlets;
 
 
-import fadi.progressoft.io.Student;
 import main.java.fadi.progressoft.io.DatabaseUtil;
+import main.java.fadi.progressoft.io.Student;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

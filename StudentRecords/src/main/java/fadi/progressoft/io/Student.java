@@ -1,4 +1,4 @@
-package fadi.progressoft.io;
+package main.java.fadi.progressoft.io;
 
 public class Student {
     private int id;

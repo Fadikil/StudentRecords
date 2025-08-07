@@ -2,10 +2,14 @@
 <html>
 <head>
     <title>Add New Student</title>
-<%--suppress CssInvalidPropertyValue --%>
+
     <style>
         body{font-family: Arial, sans-serif;  margin : 40px; }
+        form{max-width: 400px;}
+        label{display: block; margin-top: 10px;}
+        input[type = text], input[type=email]{
 
+        }
 
     </style>
 </head>
