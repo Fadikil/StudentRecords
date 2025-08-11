@@ -13,7 +13,7 @@ import java.io.IOException;
 
 
 @WebServlet("/addStudent")
-public class studentServlet extends HttpServlet {
+public class studentFields extends HttpServlet {
     private DatabaseUtil databaseUtil ;
 
      @Override
