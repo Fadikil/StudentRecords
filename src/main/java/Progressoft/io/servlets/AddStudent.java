@@ -2,7 +2,6 @@ package Progressoft.io.servlets;
 
 import Progressoft.io.DatabaseUtil;
 import Progressoft.io.Student;
-import Progressoft.io.servlets.AddResult;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/addStudent")
-public class addStudent extends HttpServlet {
+public class AddStudent extends HttpServlet {
     private DatabaseUtil databaseUtil;
 
     @Override
