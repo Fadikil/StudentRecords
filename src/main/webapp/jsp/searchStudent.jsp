@@ -27,7 +27,7 @@ a {
     border-radius:3px;
     text-decoration:none;
     display: block;
-    width: fit-content;  /* shrink to content */
+    width: fit-content;
     margin: 15px auto 0;
 
 
