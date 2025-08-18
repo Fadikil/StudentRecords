@@ -21,12 +21,16 @@ public class viewStudents extends HttpServlet {
     @Override
 
     public void init() throws ServletException {
-        DatabaseUtil.initializeDatabase(); // ensure table exists
+        DatabaseUtil.initializeDatabase();
         databaseUtil = new DatabaseUtil();
     }
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Student> students = databaseUtil.getAllStudents();
+        request.setAttribute("students", students);
+        request.getRequestDispatcher("/jsp/viewStudents.jsp").forward(request, response);
+    }
 
-
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException{
+    /* public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException{
         List<Student>students = databaseUtil.getAllStudents();
         request.setAttribute("students", students);
         try {
@@ -35,5 +39,5 @@ public class viewStudents extends HttpServlet {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
+    } */
 }
