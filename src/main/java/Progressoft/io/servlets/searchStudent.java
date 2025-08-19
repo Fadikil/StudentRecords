@@ -16,7 +16,7 @@ public class searchStudent extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        DatabaseUtil.initializeDatabase(); // ensure table exists
+        DatabaseUtil.initializeDatabase();
         databaseUtil = new DatabaseUtil();
     }
 
@@ -34,7 +34,19 @@ public class searchStudent extends HttpServlet {
             }
         }
 
-        request.setAttribute("student", student);
-        request.getRequestDispatcher("/jsp/studentDetails.jsp").forward(request, response);
+        if(student != null) {
+           response.getWriter().write(
+                   "<p>ID: " + student.getId() + "</p>" +
+                           "<p>Name:" + student.getName() + "</p>" +
+                   "<p>Email:" + student.getEmail() + "</p>" +
+                   "<p>Course:" + student.getCourse() + "</p>"
+           );
+
+
+        }else{
+            response.getWriter().write("Student not found");
+        }
+
+
     }
 }

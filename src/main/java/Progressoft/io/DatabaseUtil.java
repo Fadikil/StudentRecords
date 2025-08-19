@@ -118,14 +118,16 @@ public class DatabaseUtil {
         return null;
     }
 
-    public void deleteStudent(int id) {
+    public boolean deleteStudent(int id) {
         String sql = "DELETE FROM students WHERE id = ?";
         try (Connection conn = getConnection();
              PreparedStatement st = conn.prepareStatement(sql)) {
             st.setInt(1, id);
-            st.executeUpdate();
+           return st.executeUpdate()>0;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
+
     }
 }

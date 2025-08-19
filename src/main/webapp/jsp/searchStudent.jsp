@@ -36,13 +36,32 @@ a {
 
 <body>
 <h1>Search student by ID</h1>
-<form method="get" action="<%= request.getContextPath() %>/searchStudent">
-    <label for="id">Student ID:</label>
-    <input type="number" name="id" id="id" required/>
-    <input type="submit" value="Search"/>
-
+<form id="searchForm">
+    <label for = "id">Student ID:</label>
+    <input type = "number" name = "id" id = "id" required/>
+    <button type = "submit">Search</button>
 </form>
+<div id = "result"></div>
+<a href="<%= request.getContextPath() %>/index.jsp">Back to Home</a>
 
-<p><a href="<%= request.getContextPath() %>/index.jsp">Back to Home</a></p>
+<script>
+    document.getElementById("searchForm").addEventListener("submit", function(e){
+        e.preventDefault();
+        let formData = new URLSearchParams(new FormData(this));
+
+        fetch("<%= request.getContextPath() %>/searchStudent?id=" + formData.get("id"))
+            .then(r => r.text())
+            .then(data =>{
+                document.getElementById("result").innerHTML = data;
+
+    })
+            .catch(error => {
+                document.getElementById("result").innerHTML = "Error occurred.";
+            });
+    });
+
+
+
+</script>
 </body>
 </html>

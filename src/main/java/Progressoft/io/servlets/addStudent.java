@@ -46,16 +46,14 @@ public class addStudent extends HttpServlet {
 
         switch (result) {
             case SUCCESS:
-                response.sendRedirect(request.getContextPath() + "/jsp/success.jsp");
+                response.getWriter().write("Student added successfully!");
                 break;
             case EMAIL_EXISTS:
-                request.setAttribute("error", "Email already in use. Try another.");
-                request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
+                response.getWriter().write("Email already in use");
                 break;
-            case ERROR:
+
             default:
-                request.setAttribute("error", "An unexpected error occurred. Try again.");
-                request.getRequestDispatcher("/jsp/error.jsp").forward(request, response);
+               response.getWriter().write("Unexpected Error Occurred");
                 break;
         }
     }
