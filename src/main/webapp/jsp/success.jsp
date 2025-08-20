@@ -5,6 +5,7 @@
 </head>
 <body>
 <h2>Student added successfully</h2>
-<a href="${pageContext.request.contextPath}/viewStudents">View all students</a>
+
+<a href="${pageContext.request.contextPath}/jsp/viewStudents.jsp">View all students</a>
 </body>
 </html>

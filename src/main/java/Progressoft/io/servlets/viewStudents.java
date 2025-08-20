@@ -23,7 +23,7 @@ public class viewStudents extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
+        response.setContentType("text/html;charset=UTF-8");
         List<Student> students = databaseUtil.getAllStudents();
 
         StringBuilder out = new StringBuilder();
@@ -37,8 +37,9 @@ public class viewStudents extends HttpServlet {
                         .append("<td>").append(student.getName()).append("</td>")
                         .append("<td>").append(student.getEmail()).append("</td>")
                         .append("<td>").append(student.getCourse()).append("</td>")
-                        .append("<td><button onclick=\"deleteStudents(")
-                        .append(student.getId()).append(")\">Delete</button></td>")
+                        .append("<td><button class='deleteBtn' data-id='")
+                        .append(student.getId())
+                        .append("'>Delete</button></td>")
                         .append("</tr>");
             }
         } else {
@@ -46,7 +47,6 @@ public class viewStudents extends HttpServlet {
         }
 
         out.append("</table>");
-
         response.getWriter().write(out.toString());
     }
 }
