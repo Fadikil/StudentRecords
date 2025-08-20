@@ -1,5 +1,4 @@
-<!-- File: AddStudent.jsp -->
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,6 +50,6 @@
     <input type="submit" value="Add Student"/>
 </form>
 
-<p><a href="${pageContext.request.contextPath}/index.jsp">Back to Home</a></p>
+<p><a href="${pageContext.request.contextPath}/viewstudent.jsp">View All Students</a></p>
 </body>
 </html>
