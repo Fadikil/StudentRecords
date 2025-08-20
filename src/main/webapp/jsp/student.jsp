@@ -32,7 +32,7 @@
 <body>
 <h1>Add New Student</h1>
 
-<!-- Display error if exists -->
+
 <c:if test="${not empty error}">
     <div class="error">${error}</div>
 </c:if>

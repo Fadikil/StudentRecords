@@ -1,8 +1,5 @@
 package Progressoft.io.servlets;
 
-
-
-
 import Progressoft.io.DatabaseUtil;
 import Progressoft.io.Student;
 
@@ -14,26 +11,42 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet ("/viewStudents")
+@WebServlet("/viewStudents")
 public class viewStudents extends HttpServlet {
     private DatabaseUtil databaseUtil;
 
     @Override
-
     public void init() throws ServletException {
-        DatabaseUtil.initializeDatabase(); // ensure table exists
+        DatabaseUtil.initializeDatabase();
         databaseUtil = new DatabaseUtil();
     }
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        List<Student> students = databaseUtil.getAllStudents();
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException{
-        List<Student>students = databaseUtil.getAllStudents();
-        request.setAttribute("students", students);
-        try {
-            request.getRequestDispatcher("/jsp/viewStudents.jsp").forward(request, response);
+        StringBuilder out = new StringBuilder();
+        out.append("<table>");
+        out.append("<tr><th>ID</th><th>Name</th><th>Email</th><th>Course</th><th>Action</th></tr>");
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if (students != null && !students.isEmpty()) {
+            for (Student student : students) {
+                out.append("<tr>")
+                        .append("<td>").append(student.getId()).append("</td>")
+                        .append("<td>").append(student.getName()).append("</td>")
+                        .append("<td>").append(student.getEmail()).append("</td>")
+                        .append("<td>").append(student.getCourse()).append("</td>")
+                        .append("<td><button class='deleteBtn' data-id='")
+                        .append(student.getId())
+                        .append("'>Delete</button></td>")
+                        .append("</tr>");
+            }
+        } else {
+            out.append("<tr><td colspan='5'>No Students found</td></tr>");
         }
+
+        out.append("</table>");
+        response.getWriter().write(out.toString());
     }
 }

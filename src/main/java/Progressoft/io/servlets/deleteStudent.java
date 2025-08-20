@@ -1,9 +1,6 @@
 package Progressoft.io.servlets;
 
-
-
 import Progressoft.io.DatabaseUtil;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,20 +15,30 @@ public class deleteStudent extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        DatabaseUtil.initializeDatabase(); // ensure table exists
+        DatabaseUtil.initializeDatabase();
         databaseUtil = new DatabaseUtil();
     }
 
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String idParam = request.getParameter("id");
+        response.setContentType("text/plain;charset=UTF-8");
+
         if (idParam != null) {
             try {
-                int id = Integer.parseInt(idParam);
-                databaseUtil.deleteStudent(id);
-            } catch (NumberFormatException ignored) {}
+                int id = Integer.parseInt(idParam.trim());
+                boolean success = databaseUtil.deleteStudent(id);
+                if (success) {
+                    response.getWriter().write("Student deleted successfully.");
+                } else {
+                    response.getWriter().write("Failed to delete student.");
+                }
+            } catch (NumberFormatException e) {
+                response.getWriter().write("Invalid student ID.");
+            }
+        } else {
+            response.getWriter().write("No student ID provided.");
         }
-        response.sendRedirect("viewStudents");
     }
-
 }
+
